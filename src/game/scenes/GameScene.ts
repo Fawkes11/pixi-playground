@@ -1,6 +1,6 @@
 import { Container } from "pixi.js";
-import { Player } from "../Player";
-import { setupKeyboard } from "../../../utils/keyboard";
+import { Player } from "../entities/Player";
+import { setupKeyboard } from "../../utils/keyboard";
 
 export class GameScene extends Container {
   private player: Player;
@@ -10,11 +10,13 @@ export class GameScene extends Container {
     super();
     this.keys = setupKeyboard();
     this.player = new Player();
+    this.player.x = 200;
+    this.player.y = 300;
     this.addChild(this.player);
   }
 
-  update() {
-    this.player.move(this.keys);
-    console.log(this.player)
+  update(delta: number) {
+    this.player.update();
   }
 }
+
